@@ -1,12 +1,14 @@
-### BoardConfig.mk
+### Device tree depends on
+1.  [CyanogenMod/android\_kernel\_htc\_msm8960](https://github.com/CyanogenMod/android_kernel_htc_msm8960/tree/cm-10.1)
+2.  [CyanogenMod/android\_device\_htc\_msm8960\-common](https://github.com/CyanogenMod/android_device_htc_msm8960-common/tree/cm-10.1)
+3.  [CyanogenMod/android\_device\_htc\_s4\-common](https://github.com/CyanogenMod/android_device_htc_s4-common/tree/cm-10.1)
 
-`TARGET_KERNEL_SOURCE := kernel/htc/msm8960`  
-This kernel source comes from [here](https://github.com/intervigilium/android_kernel_htc_msm8960). The official CM repository hasn't been updated with a fighter configuration yet ([awaiting review](http://review.cyanogenmod.org/#/c/30137/))
+### Known Issues
+1.  Camera: panorama mode shows frames bleeding in on the sides
+2.  Camcorder: does not stay in focus
+3.  RIL: the first few times the phone boots there may be a "SIM card added" or "Activation" notice
 
-### extract-files.sh / setup-makefiles.sh
+### Discussion
+For up-to-date information about this release, see [this xda thread](http://forum.xda-developers.com/showthread.php?t=2121331).
 
-Instead of running these scripts, get the proprietary libraries and makefiles from [here](https://github.com/mdmower/htc-fireball-vendor).
-
-### system.prop
-
-This is the stock system.prop.  More fat needs to be trimmed.
+© 2013 - The CyanogenMod Project

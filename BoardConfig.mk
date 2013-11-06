@@ -1,3 +1,4 @@
+# Copyright (C) 2013 The CyanogenMod Project
 # Copyright (C) 2009 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,42 +13,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
 # This file sets variables that control the way modules are built
 # thorughout the system. It should not be used to conditionally
 # disable makefiles (the proper mechanism to control what gets
 # included in a build is to use PRODUCT_PACKAGES in a product
 # definition file).
-#
 
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-# inherit from common msm8960
--include device/htc/msm8960-common/BoardConfigCommon.mk
+# inherit from S4 common
+-include device/htc/s4-common/BoardConfigCommon.mk
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := fireball
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=fighter
-BOARD_KERNEL_BASE := 0x80400000
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
-BOARD_KERNEL_PAGESIZE := 2048
-
-# TARGET_PREBUILT_KERNEL := device/htc/fireball/kernel
 TARGET_KERNEL_CONFIG := fighter_defconfig
-TARGET_KERNEL_SOURCE := kernel/htc/iv-msm8960
+
+# RIL
+BOARD_PROVIDES_LIBRIL := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/fireball/bluetooth
 
-# HTCLOG
-COMMON_GLOBAL_CFLAGS += -DHTCLOG
-
 # Vold
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 36
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
@@ -80,5 +71,16 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1207958528
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1241513472
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Use power button as select in recovery
-BOARD_HAS_NO_SELECT_BUTTON := true
+# Recovery
+TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/fireball/recovery/kernel
+
+# TWRP
+DEVICE_RESOLUTION := 540x960
+TW_FLASH_FROM_STORAGE := true
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_INTERNAL_STORAGE_PATH := "/sdcard"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_INCLUDE_DUMLOCK := true
+TW_INCLUDE_JB_CRYPTO := true
